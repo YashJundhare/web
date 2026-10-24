@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="description" content="An academic prototype exploring E20 fuel, vehicle readiness and estimated ownership impacts.">
+  <title>E20 Fuel Study &amp; Readiness Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { theme: { extend: { colors: { ink: '#0F172A', accent: '#059669', canvas: '#F8FAFC', amber: '#F59E0B' }, fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] } } } };</script>
+  <script src="https://unpkg.com/lucide@latest" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#overview" aria-label="E20 portal home">
+        <span class="brand-mark"><i data-lucide="flask-conical" aria-hidden="true"></i></span>
+        <span class="brand-copy"><strong>E20 Fuel Study &amp; Readiness Portal</strong><small>Engineering project · Consumer readiness</small></span>
+      </a>
+      <span class="version-badge">Prototype Build v0.8 <b>· Phase 1</b></span>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation"><i data-lucide="menu" aria-hidden="true"></i></button>
+      <nav id="primary-nav" class="primary-nav" aria-label="Main navigation">
+        <a href="#overview">Overview</a><a href="#compatibility">Compatibility Tool</a><a href="#calculator">Mileage Estimator</a><a href="#field-survey">Field Survey <span class="nav-wip">WIP</span></a><a href="#myths">Myths Module <span class="nav-wip">WIP</span></a><a href="#faq">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="overview">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-dot"></span> PHASE 1 · CORE TOOLS &amp; PROTOTYPE</p>
+          <h1>Understanding E20.<br><span>Making readiness</span> practical.</h1>
+          <p class="hero-lede">A student engineering project translating ethanol-blended fuel research into clear, useful checks for Indian vehicle owners.</p>
+          <div class="hero-actions"><a class="button button-primary" href="#compatibility">Check vehicle readiness <i data-lucide="arrow-right" aria-hidden="true"></i></a><a class="text-link" href="#blend">Explore the fuel blend <i data-lucide="move-down" aria-hidden="true"></i></a></div>
+          <div class="hero-note"><i data-lucide="info" aria-hidden="true"></i><span>Prototype estimates are educational and do not replace manufacturer guidance or emissions testing.</span></div>
+        </div>
+        <div class="hero-visual" aria-label="E20 blend overview graphic">
+          <div class="visual-topline"><span>FUEL BLEND MODEL</span><span class="live-indicator">● INTERACTIVE</span></div>
+          <div class="fuel-dial"><div class="dial-center"><span class="dial-label">ETHANOL BLEND</span><strong id="hero-blend-value">E20</strong><span>20% bio-ethanol</span></div></div>
+          <div class="hero-stats"><div><strong>20<span>%</span></strong><small>Renewable ethanol</small></div><div><strong>80<span>%</span></strong><small>Petrol by volume</small></div><div><strong>1<span> L</span></strong><small>Illustrative blend</small></div></div>
+          <p class="visual-footnote">Composition shown by volume · Anhydrous ethanol</p>
+        </div>
+      </div>
+      <div class="container fact-strip">
+        <article class="fact-item"><span class="fact-icon"><i data-lucide="gauge" aria-hidden="true"></i></span><div><strong>100–108 RON</strong><span>Reported ethanol octane range*</span></div></article>
+        <article class="fact-item"><span class="fact-icon"><i data-lucide="wind" aria-hidden="true"></i></span><div><strong>~30% lower CO*</strong><span>Tailpipe carbon monoxide estimate</span></div></article>
+        <article class="fact-item"><span class="fact-icon"><i data-lucide="calendar-check" aria-hidden="true"></i></span><div><strong>April 2023</strong><span>BS6 Phase-2 material rollout</span></div></article>
+        <p class="fact-caveat">*Indicative figures from project references; fuel blend properties and emissions vary by vehicle, test cycle and source.</p>
+      </div>
+    </section>
+
+    <section class="section" id="blend">
+      <div class="container">
+        <div class="section-heading"><div><p class="eyebrow">01 / FUEL FUNDAMENTALS</p><h2>What is in a litre of E20?</h2><p>Compare the blend composition and key properties. Values are indicative, for learning purposes.</p></div><span class="section-index">01</span></div>
+        <div class="panel blend-panel">
+          <div class="blend-main">
+            <div class="blend-controls"><div><span class="field-label">SELECT A BLEND</span><div class="segmented-control" role="group" aria-label="Select fuel blend"><button type="button" class="blend-option" data-blend="e10" aria-pressed="false">E10</button><button type="button" class="blend-option active" data-blend="e20" aria-pressed="true">E20</button></div></div><div class="blend-volume"><i data-lucide="beaker" aria-hidden="true"></i><span>1-litre composition model</span></div></div>
+            <div class="composition-title"><h3 id="blend-title">E20 composition</h3><span id="blend-subtitle">20% ethanol · 80% petrol</span></div>
+            <div class="composition-bar" role="img" aria-label="E20 contains 20 percent ethanol and 80 percent petrol"><div class="ethanol-segment" id="ethanol-segment"><span>ETHANOL <b id="ethanol-litres">200 mL</b></span></div><div class="petrol-segment" id="petrol-segment"><span>PETROL <b id="petrol-litres">800 mL</b></span></div></div>
+            <div class="bar-scale"><span>0 mL</span><span>500 mL</span><span>1,000 mL</span></div>
+            <div class="blend-legend"><span><i class="legend-dot ethanol-dot"></i>Bio-ethanol</span><span><i class="legend-dot petrol-dot"></i>Petrol</span><span id="blend-caveat">Volumetric proportions; actual retail fuel may vary.</span></div>
+          </div>
+          <div class="property-table-wrap"><h3>Blend property comparison</h3><table class="property-table"><thead><tr><th>Property</th><th>E10</th><th>E20</th></tr></thead><tbody><tr><td>Bio-ethanol</td><td>10%</td><td>20%</td></tr><tr><td>Petrol</td><td>90%</td><td>80%</td></tr><tr><td>Research Octane Number <small>(indicative)</small></td><td>~95–100</td><td>~100–108</td></tr><tr><td>Energy density <small>(approx.)</small></td><td>~30.9 MJ/L</td><td>~29.8 MJ/L</td></tr><tr><td>Tailpipe CO impact <small>(versus neat petrol)*</small></td><td>Potential reduction</td><td>Up to ~30% reduction</td></tr></tbody></table><p class="table-note">*Emission outcomes are engine- and test-dependent. RON ranges depend on base petrol and blending.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="compatibility">
+      <div class="container">
+        <div class="section-heading"><div><p class="eyebrow">02 / VEHICLE READINESS</p><h2>Compatibility checker</h2><p>Use the vehicle age as a first-pass guide. Always verify the exact model with its manufacturer.</p></div><span class="section-index">02</span></div>
+        <div class="tool-layout">
+          <form class="panel form-panel" id="compatibility-form">
+            <div class="panel-kicker"><i data-lucide="car-front" aria-hidden="true"></i><span>VEHICLE PROFILE</span></div>
+            <label class="form-field"><span>Vehicle type</span><select id="vehicle-type"><option value="two-wheeler">Two-Wheeler (Scooter/Bike)</option><option value="passenger-car">Passenger Car (Hatchback/Sedan)</option><option value="suv">SUV / MPV</option></select></label>
+            <label class="form-field"><span>Manufacturing era</span><select id="vehicle-era"><option value="post-2023">Post-April 2023 (BS6 Phase 2)</option><option value="2010-2023">2010 – March 2023 (BS4 / BS6 Ph1)</option><option value="pre-2010">Pre-2010 (BS2 / BS3 Carburetted)</option></select></label>
+            <div class="form-callout"><i data-lucide="shield-check" aria-hidden="true"></i><span>Vehicle-specific E20 approval varies. Check the fuel flap, owner's manual or authorized service center.</span></div>
+          </form>
+          <article class="panel result-panel" aria-live="polite" aria-atomic="true">
+            <div class="result-header"><div><p class="field-label">READINESS ASSESSMENT</p><h3 id="readiness-title">Factory Ready</h3></div><span class="status-badge status-ready" id="readiness-badge"><i data-lucide="check-circle-2" aria-hidden="true"></i><span>Factory Ready</span></span></div>
+            <p class="result-summary" id="readiness-summary">Vehicles designed for the BS6 Phase 2 rollout are more likely to use E20-compatible fuel-system materials. Confirm model approval.</p>
+            <div class="material-grid"><div class="material-item"><span>Elastomers &amp; seals</span><strong id="material-elastomers">E20-rated materials expected</strong></div><div class="material-item"><span>Fuel hoses</span><strong id="material-hoses">Ethanol-resistant specification</strong></div><div class="material-item"><span>Fuel delivery</span><strong id="material-delivery">Injector system; verify model</strong></div></div>
+            <div class="efficiency-row"><span>Indicative efficiency change</span><strong id="efficiency-drop">~2% potential reduction</strong></div>
+            <div class="checklist-wrap"><h4>Recommended checks</h4><ol id="maintenance-checklist"><li>Confirm E20 approval in the owner's manual.</li><li>Use fuel from a reputable, properly maintained station.</li><li>Follow the manufacturer's normal service schedule.</li></ol></div>
+            <p class="result-disclaimer">Age-based guidance only; components and approval differ by model, fuel system and service history.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="calculator">
+      <div class="container">
+        <div class="section-heading"><div><p class="eyebrow">03 / OWNERSHIP IMPACT</p><h2>Mileage &amp; cost estimator</h2><p>Explore how an assumed efficiency change could affect your monthly fuel spend.</p></div><span class="section-index">03</span></div>
+        <div class="calculator-layout">
+          <div class="panel calculator-inputs">
+            <div class="panel-kicker"><i data-lucide="sliders-horizontal" aria-hidden="true"></i><span>YOUR DRIVING PROFILE</span></div>
+            <label class="range-field" for="monthly-distance"><span><b>Monthly distance</b><output id="distance-output" for="monthly-distance">1,000 km</output></span><input id="monthly-distance" type="range" min="100" max="3000" step="50" value="1000"><span class="range-limits"><small>100 km</small><small>3,000 km</small></span></label>
+            <label class="range-field" for="vehicle-mileage"><span><b>Current vehicle mileage</b><output id="mileage-output" for="vehicle-mileage">18 km/L</output></span><input id="vehicle-mileage" type="range" min="8" max="65" step="1" value="18"><span class="range-limits"><small>8 km/L</small><small>65 km/L</small></span></label>
+            <label class="range-field" for="petrol-price"><span><b>Petrol price</b><output id="price-output" for="petrol-price">₹100/L</output></span><input id="petrol-price" type="range" min="90" max="115" step="1" value="100"><span class="range-limits"><small>₹90/L</small><small>₹115/L</small></span></label>
+            <label class="form-field tuning-field" for="vehicle-tuning"><span>Vehicle tuning assumption</span><select id="vehicle-tuning"><option value="0.02">-2.0% · Post-2023 car</option><option value="0.035" selected>-3.5% · Two-wheeler</option><option value="0.05">-5.0% · Pre-2023 car</option></select></label>
+            <p class="calculator-assumption"><i data-lucide="info" aria-hidden="true"></i> Efficiency changes are illustrative assumptions, not a vehicle-specific prediction.</p>
+          </div>
+          <div class="panel calculator-results" aria-live="polite" aria-atomic="true">
+            <div class="calc-result-top"><div><p class="field-label">ESTIMATED E20 EFFICIENCY</p><div class="big-metric"><strong id="adjusted-mileage">17.4</strong><span>km/L</span></div></div><span class="metric-icon"><i data-lucide="route" aria-hidden="true"></i></span></div>
+            <div class="cost-comparison"><div><span>Petrol baseline / month</span><strong id="baseline-cost">₹5,556</strong></div><i data-lucide="arrow-right" aria-hidden="true"></i><div><span>E20 estimate / month</span><strong id="e20-cost">₹5,750</strong></div></div>
+            <div class="impact-callout"><div><span>Monthly cost difference</span><strong id="monthly-difference">+₹194</strong></div><div><span>Extra fuel required</span><strong id="extra-litres">+1.9 L</strong></div></div>
+            <div class="annual-metrics"><div><span class="annual-icon"><i data-lucide="leaf" aria-hidden="true"></i></span><div><small>Estimated annual tailpipe CO reduction*</small><strong id="co-reduction">1.1 kg/year</strong></div></div><div><span class="annual-icon"><i data-lucide="droplet" aria-hidden="true"></i></span><div><small>Crude-oil displacement proxy**</small><strong id="oil-saved">~112 L/year</strong></div></div></div>
+            <p class="calc-footnote">*Illustrative model assumes 0.03 kg CO/L baseline and 30% reduction; actual emissions vary substantially. **Estimated petrol volume displaced by ethanol content; not a full crude-to-fuel lifecycle conversion.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="field-survey">
+      <div class="container">
+        <div class="section-heading"><div><p class="eyebrow">04 / PRIMARY RESEARCH</p><h2>Field research &amp; survey analytics</h2><p>Research instruments are being prepared. No final survey findings are presented in this prototype.</p></div><span class="phase-badge"><i data-lucide="clock-3" aria-hidden="true"></i> Phase 2 · In progress</span></div>
+        <div class="phase-notice"><i data-lucide="clipboard-list" aria-hidden="true"></i><div><strong>Phase 2: Primary Data Collection &amp; Charts (In Progress)</strong><span>Charts and analysis will be populated after fieldwork, consent review and data validation.</span></div></div>
+        <div class="research-grid">
+          <article class="panel blueprint-card"><div class="blueprint-head"><div><span class="blueprint-number">MODULE A</span><h3>Public Consumer Survey</h3><p>Target: N = 100 Vehicle Owners</p></div><span class="awaiting-badge">Awaiting Field Survey CSV Data</span></div><div class="chart-placeholder" role="img" aria-label="Chart placeholder; consumer survey data collection underway"><div class="placeholder-chart"><i data-lucide="bar-chart-3" aria-hidden="true"></i><span>CHART WIREFRAME</span><div class="wire-bars"><i></i><i></i><i></i><i></i><i></i></div></div><div class="placeholder-legend"><i></i><i></i><i></i></div></div><h4>Parameters being collected</h4><ul class="parameter-list"><li>Awareness of E20 rollout</li><li>Perceived vs. actual mileage drop</li><li>Willingness to upgrade older vehicles</li></ul></article>
+          <article class="panel blueprint-card"><div class="blueprint-head"><div><span class="blueprint-number">MODULE B</span><h3>Mechanic &amp; Service Center Findings</h3><p>Target: N = 25 Workshops</p></div><span class="awaiting-badge">Awaiting Field Survey CSV Data</span></div><div class="chart-placeholder" role="img" aria-label="Horizontal chart placeholder; workshop data collection underway"><div class="placeholder-chart horizontal"><i data-lucide="chart-no-axes-column-increasing" aria-hidden="true"></i><span>HORIZONTAL CHART WIREFRAME</span><div class="wire-lines"><i></i><i></i><i></i></div></div></div><h4>Parameters being recorded</h4><ul class="parameter-list"><li>Frequency of fuel-line/rubber seal degradation</li><li>Carburettor vs. Fuel Injector cleaning intervals</li><li>Cost of E20-compliant elastomer replacement kits</li></ul></article>
+        </div>
+        <p class="research-integrity"><i data-lucide="lock-keyhole" aria-hidden="true"></i> Placeholder visualizations only — no synthetic or fabricated survey findings are shown.</p>
+      </div>
+    </section>
+
+    <section class="section" id="myths">
+      <div class="container">
+        <div class="section-heading"><div><p class="eyebrow">05 / LITERATURE REVIEW</p><h2>Myths vs. reality</h2><p>A planned interactive explainer grounded in verified research and field findings.</p></div><span class="phase-badge"><i data-lucide="clock-3" aria-hidden="true"></i> Phase 2</span></div>
+        <div class="myths-banner"><div class="myths-banner-icon"><i data-lucide="book-open-check" aria-hidden="true"></i></div><div><strong>Module Scheduled for Phase 2 Integration</strong><span>Evidence review underway · Interactive flip cards will follow validation</span></div><span class="scheduled-badge">SCHEDULED</span></div>
+        <div class="myth-grid"><article class="myth-skeleton"><span><i data-lucide="lock" aria-hidden="true"></i> LOCKED MODULE</span><i data-lucide="cog" aria-hidden="true"></i><h3>Engine Corrosion Analysis</h3><div class="skeleton-line"></div><div class="skeleton-line short"></div></article><article class="myth-skeleton"><span><i data-lucide="lock" aria-hidden="true"></i> LOCKED MODULE</span><i data-lucide="thermometer" aria-hidden="true"></i><h3>Cold Start Vapor Pressure</h3><div class="skeleton-line"></div><div class="skeleton-line short"></div></article><article class="myth-skeleton"><span><i data-lucide="lock" aria-hidden="true"></i> LOCKED MODULE</span><i data-lucide="droplets" aria-hidden="true"></i><h3>Water Phase Separation</h3><div class="skeleton-line"></div><div class="skeleton-line short"></div></article></div>
+        <p class="literature-note"><i data-lucide="quote" aria-hidden="true"></i> Literature verification from ARAI &amp; SIAM test reports in progress — interactive flip cards will be enabled after survey validation.</p>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="faq">
+      <div class="container faq-layout"><div class="faq-intro"><p class="eyebrow">06 / QUICK REFERENCE</p><h2>Technical FAQ</h2><p>Short answers to common questions. For a definitive answer, consult your vehicle manufacturer.</p><div class="faq-contact"><i data-lucide="message-circle-question" aria-hidden="true"></i><span>Have a model-specific question?<br><b>Contact an authorized service center.</b></span></div></div>
+        <div class="faq-list" id="faq-list">
+          <article class="faq-item"><h3><button class="faq-question" type="button" aria-expanded="false"><span>How can I check if my vehicle is E20 compliant?</span><i data-lucide="plus" aria-hidden="true"></i></button></h3><div class="faq-answer" hidden><p>Check for an E20 label on the fuel flap, consult the owner's manual for your exact model and year, or ask an authorized service center. A vehicle's manufacture date alone does not confirm approval.</p></div></article>
+          <article class="faq-item"><h3><button class="faq-question" type="button" aria-expanded="false"><span>Can E10 and E20 be mixed in the tank safely?</span><i data-lucide="plus" aria-hidden="true"></i></button></h3><div class="faq-answer" hidden><p>For vehicles approved for E20, normal mixing with lower-ethanol petrol is generally not a concern. For older or non-approved vehicles, follow the manufacturer's fuel guidance rather than relying on a universal rule.</p></div></article>
+          <article class="faq-item"><h3><button class="faq-question" type="button" aria-expanded="false"><span>Why can E20 have a higher octane rating but lower energy density?</span><i data-lucide="plus" aria-hidden="true"></i></button></h3><div class="faq-answer" hidden><p>Ethanol has high knock resistance, which can raise a blend's octane rating. However, ethanol contains less energy per litre than petrol, so a litre of E20 generally provides less energy even as its knock resistance improves.</p></div></article>
+          <article class="faq-item"><h3><button class="faq-question" type="button" aria-expanded="false"><span>What is the impact on my manufacturer's warranty?</span><i data-lucide="plus" aria-hidden="true"></i></button></h3><div class="faq-answer" hidden><p>Warranty terms are manufacturer- and model-specific. Using fuel outside the vehicle's stated specification may affect coverage for related repairs; confirm approved blends and warranty conditions in your manual or with the manufacturer.</p></div></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-main"><a class="footer-brand" href="#overview"><span class="brand-mark"><i data-lucide="flask-conical" aria-hidden="true"></i></span><span><strong>E20 Fuel Study</strong><small>Academic engineering prototype</small></span></a><div class="footer-reference"><span>REFERENCE FRAMEWORK</span><p>ARAI · Ministry of Road Transport and Highways (MoRTH) · NITI Aayog</p><small>Figures are indicative and should be verified against primary source publications and manufacturer specifications.</small></div><a class="back-top" href="#overview">Back to top <i data-lucide="arrow-up" aria-hidden="true"></i></a></div><div class="container footer-bottom"><span>Student project · Phase 1 prototype</span><span>For educational use; not a substitute for vehicle-specific technical advice.</span></div></footer>
+</body>
+</html>
